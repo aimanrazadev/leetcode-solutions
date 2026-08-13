@@ -1,0 +1,27 @@
+name: Sync LeetCode Solutions
+
+on:
+  workflow_dispatch:
+  schedule:
+    # GitHub scheduled workflows support a minimum interval of 5 minutes.
+    # The job may start a little later depending on GitHub load.
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    name: Pull accepted LeetCode submissions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Sync accepted solutions
+        uses: joshcai/leetcode-sync@v1.7
+        with:
+          github-token: ${{ github.token }}
+          leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
+          leetcode-session: ${{ secrets.LEETCODE_SESSION }}
+          destination-folder: solutions
+          verbose: true
+          commit-header: "[LeetCode Sync]"

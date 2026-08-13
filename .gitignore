@@ -1,0 +1,15 @@
+# Local editor / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets and local environment files
+.env
+.env.*
+!.env.example
+
+# Node / Python local artifacts, if you experiment locally
+node_modules/
+__pycache__/
+*.py[cod]
